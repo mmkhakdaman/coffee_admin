@@ -30,6 +30,15 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
+Route::get('/products', function () {
+    return Inertia::render('Products/List');
+})->middleware(['auth', 'verified'])->name('products.list');
+
+Route::get('/products/new', function () {
+    return Inertia::render('Products/New');
+})->middleware(['auth', 'verified'])->name('products.new');
+
+
 Route::get('/categories', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('categories');
