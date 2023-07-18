@@ -1,4 +1,50 @@
-export default function NewCategoryModal({onClosed}: { onClosed: () => void }) {
+import {useState} from "react";
+import axios from "axios";
+
+export default function NewCategoryModal(
+    {
+        onClosed,
+        onCreated
+    }: { onClosed: () => void, onCreated: () => void }
+) {
+    const [values, setValues] = useState({
+        title: '',
+    });
+
+    const [errors, setErrors] = useState({
+        title: '',
+    });
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleChange = (event: any) => {
+        const key = event.target.name;
+        const value = event.target.value;
+        setValues({
+            ...values,
+            [key]: value
+        });
+    }
+
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+        setIsSubmitting(true);
+        axios.post(route('categories.store'), values)
+            .then(
+                () => {
+                    setIsSubmitting(false);
+                    onCreated();
+                }
+            )
+            .catch(
+                (error) => {
+                    setIsSubmitting(false);
+                    setErrors(error.response.data.errors);
+                }
+            );
+    }
+
+
     return (
         <div className="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog"
              aria-modal="true">
@@ -31,14 +77,17 @@ export default function NewCategoryModal({onClosed}: { onClosed: () => void }) {
                                 </h3>
                                 <div className="mt-2">
                                     <p className="text-sm text-gray-500">
-                                        <label htmlFor="name"
+                                        <label htmlFor="title"
                                                className="block text-sm font-medium text-gray-700 w-full">
                                             Name
                                         </label>
-                                        <input type="text" name="name" id="name"
+                                        <input type="text" name="title" id="title"
                                                className="mt-1 focus:ring-pink-500 focus:border-pink-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                               placeholder="Name"/>
-
+                                               placeholder="Name"
+                                               onChange={handleChange}
+                                        />
+                                        {errors.title &&
+                                            <small className="text-red-500 text-xs italic">{errors.title}</small>}
                                     </p>
                                 </div>
                             </div>
@@ -47,14 +96,14 @@ export default function NewCategoryModal({onClosed}: { onClosed: () => void }) {
                     <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                         <button type="button"
                                 className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-pink-600 text-base font-medium text-white hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:ml-3 sm:w-auto sm:text-sm"
-                                onClick={onClosed}
+                                onClick={handleSubmit}
+                                disabled={isSubmitting}
                         >
                             Save
                         </button>
                         <button type="button"
                                 className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                                 onClick={onClosed}
-                            // ref={cancelButtonRef}
                         >
                             Cancel
                         </button>

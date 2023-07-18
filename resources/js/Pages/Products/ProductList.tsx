@@ -1,10 +1,15 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import {Head, Link} from '@inertiajs/react';
 import {PageProps} from '@/types';
-import CategoryList from "@/Components/Category/list";
-import ProductItem from "@/Components/Products/Item";
+import CategoryList from "@/Components/Category/CategoryList";
+import ProductItem from "@/Components/Products/ProductItem";
 
-export default function Dashboard({auth}: PageProps) {
+export default function ProductList(
+    {
+        auth,
+        products
+    }: PageProps & { products: Product[] }
+) {
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -24,17 +29,18 @@ export default function Dashboard({auth}: PageProps) {
                             </h1>
 
                             <Link
-                                href={route('products.new')}
+                                href={route('products.create')}
                                 className="bg-pink-500 text-white hover:bg-pink-700 font-bold py-1 px-2 rounded-lg">
                                 New
                             </Link>
                         </div>
                         <div className="flex flex-col mt-6 space-y-2">
                             {
-                                [
-                                    0, 1, 2, 3
-                                ].map(
-                                    () => <ProductItem/>
+                                products.map(
+                                    (product: Product) => <ProductItem
+                                        key={product.id}
+                                        product={product}
+                                    />
                                 )
                             }
                         </div>

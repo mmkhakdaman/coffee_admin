@@ -18,10 +18,11 @@ export default function Authenticated({user, header, children}: PropsWithChildre
             >{children}</main>
 
             <div className="fixed bottom-0 w-full">
-                <div className="flex justify-around bg-white rounded-t-lg shadow-[0_0px_50px_0px_rgba(0,0,0,0.3)] w-11/12 mx-auto">
+                <div
+                    className="flex justify-around bg-white rounded-t-lg shadow-[0_0px_50px_0px_rgba(0,0,0,0.3)] w-11/12 mx-auto">
                     <NavLink href={route('products.list')} active={route().current('products.list')}>
                         <div
-                            className="flex items-center justify-center w-full py-4 px-6 space-x-2 text-gray-600 hover:bg-gray-100"
+                            className="flex items-center justify-center w-full py-4 px-6 space-x-2 text-gray-600"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                  strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -33,7 +34,7 @@ export default function Authenticated({user, header, children}: PropsWithChildre
                     </NavLink>
                     <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                         <div
-                            className="flex items-center justify-center w-full py-4 px-6 space-x-2 text-gray-600 hover:bg-gray-100"
+                            className="flex items-center justify-center w-full py-4 px-6 space-x-2 text-gray-600"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                  xmlns="http://www.w3.org/2000/svg">
