@@ -36,4 +36,12 @@ class CategoryRepository
             ->orderBy('order')
             ->get();
     }
+
+    public function getHasProductsCategories()
+    {
+        return $this->query()
+            ->has('products')
+            ->orderBy('order')
+            ->get();
+    }
 }

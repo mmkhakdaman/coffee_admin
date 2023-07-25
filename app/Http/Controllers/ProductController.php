@@ -24,7 +24,8 @@ class ProductController extends Controller
     public function index()
     {
         return Inertia::render('Products/ProductList', [
-            'products' => $this->service()->getProducts()
+            'products' => $this->service()->getProducts(),
+            'categories' => resolve(CategoryService::class)->getHasProductsCategories()
         ]);
     }
 

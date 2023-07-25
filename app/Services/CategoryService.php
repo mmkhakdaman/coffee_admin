@@ -17,6 +17,11 @@ class CategoryService
         return $this->repo()->getCategories();
     }
 
+    public function getHasProductsCategories()
+    {
+        return $this->repo()->getHasProductsCategories();
+    }
+
     public function createCategory($data)
     {
         return $this->repo()->storeCategory(
