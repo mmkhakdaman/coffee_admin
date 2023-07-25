@@ -79,6 +79,7 @@ export default function ProductCreate(
                                     const file = e.target.files[0];
                                     setValues({
                                         ...values,
+                                        // @ts-ignore
                                         image: file
                                     });
 

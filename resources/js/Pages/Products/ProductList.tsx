@@ -1,6 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import {Head, Link} from '@inertiajs/react';
-import {PageProps} from '@/types';
+import {PageProps, Product} from '@/types';
 import CategoryList from "@/Components/Category/CategoryList";
 import ProductItem from "@/Components/Products/ProductItem";
 
@@ -25,7 +25,7 @@ export default function ProductList(
                     <div className="px-4 mt-4">
                         <div className="flex justify-between">
                             <h1 className="text-2xl font-semibold text-gray-800 leading-tight">
-                                Products
+                                محصولات
                             </h1>
 
                             <Link
