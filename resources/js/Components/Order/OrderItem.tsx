@@ -59,15 +59,15 @@ export default function OrderItem(
                 </span>
                 <div className="flex flex-row space-x-reverse space-x-2">
                     <button
-                        className="border border-pink-500 text-pink-500 hover:bg-pink-700 hover:text-white hover:border-pink-700 font-bold py-1 px-2 rounded-lg">
+                        className="border border-green-500 text-green-500 hover:bg-green-700 hover:text-white hover:border-green-700 font-bold py-1 px-2 rounded-lg">
                         Done
                     </button>
                     <button
-                        className="border border-pink-500 text-pink-500 hover:bg-pink-700 hover:text-white hover:border-pink-700 font-bold py-1 px-2 rounded-lg">
+                        className="border border-green-500 text-green-500 hover:bg-green-700 hover:text-white hover:border-green-700 font-bold py-1 px-2 rounded-lg">
                         Print
                     </button>
                     <button
-                        className="border border-pink-500 text-pink-500 hover:bg-pink-700 hover:text-white hover:border-pink-700 font-bold py-1 px-2 rounded-lg">
+                        className="border border-green-500 text-green-500 hover:bg-green-700 hover:text-white hover:border-green-700 font-bold py-1 px-2 rounded-lg">
                         Edit
                     </button>
                 </div>

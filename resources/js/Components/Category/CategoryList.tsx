@@ -57,7 +57,7 @@ export default function CategoryList(
                     className="py-0.5 px-3 text-sm rounded-full whitespace-nowrap border border-neutral-700 bg-white text-neutral-700"
                     onClick={() => setShowNewCategoryModal(true)}
                 >
-                    جدید + 
+                    دسته بندی جدید +
                 </button>
                 <div className="flex text-white space-x-reverse space-x-2 overflow-x-auto pb-4">
                     {

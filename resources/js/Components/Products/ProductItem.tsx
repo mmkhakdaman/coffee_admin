@@ -1,5 +1,5 @@
-import {Product} from "@/types";
-import {Link} from "@inertiajs/react";
+import { Product } from "@/types";
+import { Link } from "@inertiajs/react";
 
 export default function ProductItem(
     {
@@ -35,7 +35,7 @@ export default function ProductItem(
                         {/*switch button*/}
                         <label className="flex items-center cursor-pointer">
                             <div className="relative">
-                                <input type="checkbox" className="hidden"/>
+                                <input type="checkbox" className="hidden" />
                                 <div
                                     className="toggle__line w-10 h-6 bg-green-400 rounded-full shadow-inner"></div>
                                 <div
@@ -46,22 +46,30 @@ export default function ProductItem(
                         </label>
                     </div>
                 </div>
-                <span className="text-sm font-semibold text-gray-800 leading-tight">
-                    {
-                        product.price
-                    }
-                    <span className="text-gray-400">T</span>
-                </span>
+
+                <div
+                    className="flex items-center space-x-2 space-x-reverse"
+                >
+                    <span className="text-sm font-semibold text-gray-800 leading-tight">
+                        {
+                            product.price.toLocaleString()
+                        }
+                    </span>
+
+                    <span className="text-gray-400">
+                        تومان
+                    </span>
+                </div>
             </div>
             <div className="flex flex-col space-y-4 flex-shrink-0">
                 <img
                     src={product.image_url}
                     className="w-24 h-24 rounded-lg object-cover"
-                    alt="food"/>
+                    alt="food" />
                 <Link
                     href={route('products.edit', product.id)}
-                    className="border text-center border-pink-500 text-pink-500 hover:bg-pink-700 hover:text-white hover:border-pink-700 font-bold py-1 px-2 rounded-lg">
-                    Edit
+                    className="border text-center border-green-500 text-green-500 hover:bg-green-700 hover:text-white hover:border-green-700 font-bold py-1 px-2 rounded-lg">
+                    ویرایش
                 </Link>
             </div>
         </div>

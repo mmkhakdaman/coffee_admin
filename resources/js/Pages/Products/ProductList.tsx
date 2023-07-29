@@ -40,8 +40,8 @@ export default function ProductList(
 
                             <Link
                                 href={route('products.create')}
-                                className="bg-pink-500 text-white hover:bg-pink-700 font-bold py-1 px-2 rounded-lg">
-                                New
+                                className="bg-green-500 text-white hover:bg-green-700 font-bold py-1 px-2 rounded-lg">
+                                محصول جدید
                             </Link>
                         </div>
                         <div className="flex flex-col mt-6 space-y-6">

@@ -59,7 +59,7 @@ export default function ProductCreate(
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">New Product</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">محصول جدید</h2>}
         >
             <Head title="New Product"/>
 
@@ -70,7 +70,7 @@ export default function ProductCreate(
                     >
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
-                                Image
+                                تصویر
                             </label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -96,19 +96,19 @@ export default function ProductCreate(
                         {/*preview image*/}
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                                Preview
+                                پیش نمایش
                             </label>
-                            <img src="https://via.placeholder.com/150" alt="preview" className="w-32 h-32"
+                            <img src="/images/no-image.jpg" alt="preview" className="w-32 h-32 object-contain"
                                  id="preview"/>
                         </div>
 
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
-                                Title
+                                عنوان
                             </label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="title" type="text" placeholder="Name"
+                                id="title" type="text" placeholder="عنوان"
                                 name="title"
                                 onChange={handleChange}
                             />
@@ -119,11 +119,11 @@ export default function ProductCreate(
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
-                                Description
+                                توضیحات
                             </label>
                             <textarea
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="description" placeholder="Description" name="description"
+                                id="description" placeholder="توضیحات" name="description"
                                 onChange={handleChange}
                             ></textarea>
                             {
@@ -133,12 +133,13 @@ export default function ProductCreate(
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
-                                Price
+                                قیمت
                             </label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="price" type="number" placeholder="Price"
+                                id="price" type="number" placeholder="قیمت"
                                 name="price"
+                                inputMode="numeric"
                                 onChange={handleChange}
                             />
                             {
@@ -148,7 +149,7 @@ export default function ProductCreate(
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="category">
-                                Category
+                                دسته بندی
                             </label>
                             <select
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -156,7 +157,7 @@ export default function ProductCreate(
                                 name="category_id"
                                 onChange={handleChange}
                             >
-                                <option value="">Select a category</option>
+                                <option value="">انتخاب کنید</option>
                                 {
                                     categories.map(
                                         (category: Category) => <option key={category.id} value={category.id}>
@@ -172,7 +173,7 @@ export default function ProductCreate(
                         </div>
                         <div className="flex items-center justify-between">
                             <button
-                                className="bg-rose-500 hover:bg-rose-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 type="submit"
                                 onClick={() => {
                                     setErrors({
@@ -184,7 +185,7 @@ export default function ProductCreate(
                                     });
                                 }}
                             >
-                                Save
+                                ذخیره
                             </button>
                         </div>
                     </form>

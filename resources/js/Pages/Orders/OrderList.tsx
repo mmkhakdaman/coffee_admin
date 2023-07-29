@@ -24,7 +24,7 @@ export default function ProductList(
                                 سفارشات
                             </h1>
                             <Link href={route('order.history')}
-                                  className="bg-pink-500 text-white hover:bg-pink-700 font-bold py-1 px-2 rounded-lg">
+                                  className="bg-green-500 text-white hover:bg-green-700 font-bold py-1 px-2 rounded-lg">
                                 تاریخچه سفارشات
                             </Link>
                         </div>
