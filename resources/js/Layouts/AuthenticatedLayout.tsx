@@ -20,7 +20,7 @@ export default function Authenticated({user, header, children}: PropsWithChildre
             <div className="fixed bottom-0 w-full">
                 <div
                     className="flex justify-around bg-white rounded-t-lg shadow-[0_0px_50px_0px_rgba(0,0,0,0.3)] w-11/12 mx-auto">
-                    <NavLink href={route('products.list')} active={route().current('products.list')}>
+                    <NavLink href={route('products.index')} active={route().current('products.index')}>
                         <div
                             className="flex items-center justify-center w-full py-4 px-6 space-x-reverse space-x-2 text-gray-600"
                         >

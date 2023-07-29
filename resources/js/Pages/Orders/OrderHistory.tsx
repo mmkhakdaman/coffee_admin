@@ -21,11 +21,11 @@ export default function ProductList(
                     <div className="px-4 mt-4">
                         <div className="flex justify-between">
                             <h1 className="text-2xl font-semibold text-gray-800 leading-tight">
-                                سفارشات
+                                 تاریخچه سفارشات
                             </h1>
-                            <Link href={route('order.history')}
+                            <Link href={route('order.list')}
                                   className="bg-pink-500 text-white hover:bg-pink-700 font-bold py-1 px-2 rounded-lg">
-                                تاریخچه سفارشات
+                                سفارشات فعلی
                             </Link>
                         </div>
                         <div className="flex flex-col mt-6 space-y-2">

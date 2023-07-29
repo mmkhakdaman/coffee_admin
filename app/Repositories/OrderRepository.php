@@ -31,4 +31,13 @@ class OrderRepository
             ->get();
     }
 
+    public function getHistoryOrders()
+    {
+        return $this->query()
+            ->whereNotIn('status', [OrderStatusEnum::PENDING])
+            ->with('items.product')
+            ->orderBy('pending_at', 'desc')
+            ->get();
+    }
+
 }

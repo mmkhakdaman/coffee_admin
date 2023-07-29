@@ -45,7 +45,7 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $this->service()->createProduct($request->validated());
-        return to_route('products.list');
+        return to_route('products.index');
     }
 
     /**
@@ -61,7 +61,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return Inertia::render('Products/ProductEdit', [
+            'product' => $product,
+            'categories' => resolve(CategoryService::class)->getCategories()
+        ]);
     }
 
     /**
@@ -69,7 +72,8 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $this->service()->updateProduct($product, $request->validated());
+        return to_route('products.index');
     }
 
     /**

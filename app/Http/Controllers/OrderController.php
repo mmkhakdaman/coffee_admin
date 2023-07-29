@@ -15,9 +15,18 @@ class OrderController extends Controller
 
     public function list()
     {
-        $orders = $this->service()->getOrders();
+        $orders = $this->service()->getPendingOrders();
 
         return Inertia::render('Orders/OrderList', [
+            'orders' => $orders
+        ]);
+    }
+
+    public function history()
+    {
+        $orders = $this->service()->getHistoryOrders();
+
+        return Inertia::render('Orders/OrderHistory', [
             'orders' => $orders
         ]);
     }

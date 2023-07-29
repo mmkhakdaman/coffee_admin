@@ -31,12 +31,13 @@ Route::get(
     '/order/list',
     [\App\Http\Controllers\OrderController::class, 'list']
 )->middleware(['auth', 'verified'])->name('order.list');
+Route::get(
+    '/order/history',
+    [\App\Http\Controllers\OrderController::class, 'history']
+)->middleware(['auth', 'verified'])->name('order.history');
 
 
-Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])->middleware(['auth', 'verified'])->name('products.list');
-
-Route::get('/products/create', [\App\Http\Controllers\ProductController::class, 'create'])->middleware(['auth', 'verified'])->name('products.create');
-Route::post('/products', [\App\Http\Controllers\ProductController::class, 'store'])->middleware(['auth', 'verified'])->name('products.store');
+Route::resource('products', \App\Http\Controllers\ProductController::class)->middleware(['auth', 'verified']);
 
 Route::apiResource('categories', \App\Http\Controllers\Api\CategoryController::class)->middleware(['auth', 'verified']);
 

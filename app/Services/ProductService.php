@@ -28,13 +28,21 @@ class ProductService
         );
     }
 
-    public function updateProduct(Product $category, array $data)
+    public function updateProduct(Product $product, array $data)
     {
-        return $this->repo()->updateProduct($category, $data);
+        if (
+            isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile
+        ) {
+            $data['image'] = $data['image']->store('products', 'public');
+        } else {
+            unset($data['image']);
+        }
+
+        return $this->repo()->updateProduct($product, $data);
     }
 
-    public function deleteProduct(Product $category)
+    public function deleteProduct(Product $product)
     {
-        return $this->repo()->delete($category);
+        return $this->repo()->delete($product);
     }
 }

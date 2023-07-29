@@ -11,9 +11,14 @@ class OrderService
         return resolve(OrderRepository::class);
     }
 
-    public function getOrders()
+    public function getPendingOrders()
     {
         return $this->repo()->getPendingOrders();
+    }
+
+    public function getHistoryOrders()
+    {
+        return $this->repo()->getHistoryOrders();
     }
 
 

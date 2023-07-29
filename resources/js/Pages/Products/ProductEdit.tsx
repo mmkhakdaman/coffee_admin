@@ -1,20 +1,28 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import {Head, useForm} from '@inertiajs/react';
-import {Category, PageProps} from '@/types';
+import {Head, router, useForm} from '@inertiajs/react';
+import {Category, PageProps, Product} from '@/types';
 import CategoryList from "@/Components/Category/CategoryList";
 import ProductItem from "@/Components/Products/ProductItem";
 import axios from "axios";
 import {ChangeEvent, FormEvent, useState} from "react";
 
-export default function ProductCreate(
-    {auth, categories}: PageProps & { categories: Category[] }
+export default function ProductEdit(
+    {
+        auth,
+        categories,
+        product
+    }: PageProps & {
+        categories: Category[],
+        product: Product
+    }
 ) {
     const form = useForm({
-        title: '',
-        description: '',
-        price: '',
-        category_id: '',
-        image: ''
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        category_id: product.category_id,
+        image: '',
+        _method: 'put'
     });
 
     const [errors, setErrors] = useState({
@@ -27,7 +35,7 @@ export default function ProductCreate(
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const key = event.target.name;
         const value = event.target.value;
         form.setData(key, value);
@@ -41,7 +49,7 @@ export default function ProductCreate(
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsSubmitting(true);
-        form.post(route('products.store'), {
+        form.post(route('products.update', product.id), {
             preserveScroll: true,
             onSuccess: () => {
                 setIsSubmitting(false);
@@ -58,7 +66,7 @@ export default function ProductCreate(
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">New Product</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">ویرایش محصول</h2>}
         >
             <Head title="New Product"/>
 
@@ -69,7 +77,7 @@ export default function ProductCreate(
                     >
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
-                                Image
+                                تصویر
                             </label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -95,20 +103,22 @@ export default function ProductCreate(
                         {/*preview image*/}
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                                Preview
+                                پیش نمایش
                             </label>
-                            <img src="https://via.placeholder.com/150" alt="preview" className="w-32 h-32"
+                            <img alt="preview" className="w-32 h-32"
+                                 src={product.image_url}
                                  id="preview"/>
                         </div>
 
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
-                                Title
+                                عنوان محصول
                             </label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="title" type="text" placeholder="Name"
+                                id="title" type="text" placeholder="عنوان"
                                 name="title"
+                                value={values.title}
                                 onChange={handleChange}
                             />
                             {
@@ -118,12 +128,14 @@ export default function ProductCreate(
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
-                                Description
+                                توضیحات
                             </label>
                             <textarea
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="description" placeholder="Description" name="description"
+                                id="description" placeholder="توضیحات"
+                                name="description"
                                 onChange={handleChange}
+                                defaultValue={values.description}
                             ></textarea>
                             {
                                 errors.description &&
@@ -132,12 +144,13 @@ export default function ProductCreate(
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="price">
-                                Price
+                                قیمت
                             </label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="price" type="number" placeholder="Price"
+                                id="price" type="number" placeholder="قیمت"
                                 name="price"
+                                value={values.price}
                                 onChange={handleChange}
                             />
                             {
@@ -147,18 +160,21 @@ export default function ProductCreate(
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="category">
-                                Category
+                                دسته بندی
                             </label>
                             <select
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline appearance-none"
                                 id="category"
                                 name="category_id"
+                                placeholder="دسته بندی"
+                                defaultValue={values.category_id}
                                 onChange={handleChange}
                             >
                                 <option value="">Select a category</option>
                                 {
                                     categories.map(
-                                        (category: Category) => <option key={category.id} value={category.id}>
+                                        (category: Category) => <option key={category.id} value={category.id}
+                                        >
                                             {category.title}
                                         </option>
                                     )
@@ -183,7 +199,7 @@ export default function ProductCreate(
                                     });
                                 }}
                             >
-                                Save
+                                ذخیره تغییرات
                             </button>
                         </div>
                     </form>

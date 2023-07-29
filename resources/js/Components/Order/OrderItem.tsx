@@ -44,11 +44,6 @@ export default function OrderItem(
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col space-y-4 flex-shrink-0">
-                    <img src="https://cdn.snappfood.ir/200x201/cdn/72/54/8/vendor/61b05b8c541d2.jpeg"
-                         className="w-24 h-24 rounded-lg object-cover"
-                         alt="food"/>
-                </div>
             </div>
             <div className="flex justify-between items-center">
                 <span
