@@ -77,12 +77,13 @@ export default function ProductEdit(
                           onSubmit={handleSubmit}
                     >
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
+                            <p className="block text-gray-700 text-sm font-bold mb-2">
                                 تصویر
-                            </label>
+                            </p>
                             <input
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                className="hidden"
                                 id="image" type="file"
+                                placeholder="تصویر"
                                 onChange={(e) => {
                                     // @ts-ignore
                                     const file = e.target.files[0];
@@ -100,6 +101,12 @@ export default function ProductEdit(
                                     reader.readAsDataURL(file);
                                 }}
                             />
+                            <label
+                                htmlFor="image"
+                                className="inline-block w-full text-center bg-transparent hover:bg-green-700 hover:text-white text-green-500 border border-green-500 font-bold py-2 px-4 rounded cursor-pointer"
+                            >
+                                تغییر تصویر
+                            </label>
                         </div>
                         {/*preview image*/}
                         <div className="mb-4">
@@ -188,7 +195,7 @@ export default function ProductEdit(
                         </div>
                         <div className="flex items-center justify-between">
                             <button
-                                className="bg-rose-500 hover:bg-rose-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 type="submit"
                                 onClick={() => {
                                     setErrors({

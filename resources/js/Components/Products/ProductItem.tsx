@@ -30,7 +30,7 @@ export default function ProductItem(
                 <div className="flex flex-col mt-2 space-y-2">
                     <div className="flex items-center space-x-2 space-x-reverse">
                         <span className="text-sm font-semibold text-gray-800 leading-tight">
-                            تغییر وضعیت
+                            موجود
                         </span>
                         {/*switch button*/}
                         <label className="flex items-center cursor-pointer">

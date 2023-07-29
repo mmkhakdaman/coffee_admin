@@ -27,7 +27,7 @@ export default function OrderItem(
                                 order.items.map(
                                     (item) => <span
                                         key={item.id}
-                                        className="text-sm font-semibold text-gray-800 leading-tight flex items-center space-x-reverse space-x-1">
+                                        className="text-sm font-semibold text-gray-800 leading-tight flex items-center justify-between">
                                         <p>
                                             {
                                                 item.product.title
@@ -36,7 +36,7 @@ export default function OrderItem(
                                         <span className="text-gray-400">
                                             {
                                                 item.quantity
-                                            }
+                                            }x
                                         </span>
                                     </span>
                                 )
@@ -57,20 +57,6 @@ export default function OrderItem(
                         تومان
                     </span>
                 </span>
-                <div className="flex flex-row space-x-reverse space-x-2">
-                    <button
-                        className="border border-green-500 text-green-500 hover:bg-green-700 hover:text-white hover:border-green-700 font-bold py-1 px-2 rounded-lg">
-                        Done
-                    </button>
-                    <button
-                        className="border border-green-500 text-green-500 hover:bg-green-700 hover:text-white hover:border-green-700 font-bold py-1 px-2 rounded-lg">
-                        Print
-                    </button>
-                    <button
-                        className="border border-green-500 text-green-500 hover:bg-green-700 hover:text-white hover:border-green-700 font-bold py-1 px-2 rounded-lg">
-                        Edit
-                    </button>
-                </div>
             </div>
         </div>
     );

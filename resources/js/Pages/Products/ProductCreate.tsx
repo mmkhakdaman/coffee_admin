@@ -69,11 +69,11 @@ export default function ProductCreate(
                           onSubmit={handleSubmit}
                     >
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
+                            <p className="block text-gray-700 text-sm font-bold mb-2">
                                 تصویر
-                            </label>
+                            </p>
                             <input
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                className="hidden"
                                 id="image" type="file"
                                 onChange={(e) => {
                                     // @ts-ignore
@@ -92,6 +92,12 @@ export default function ProductCreate(
                                     reader.readAsDataURL(file);
                                 }}
                             />
+                            <label
+                                htmlFor="image"
+                                className="inline-block w-full text-center bg-transparent hover:bg-green-700 hover:text-white text-green-500 border border-green-500 font-bold py-2 px-4 rounded cursor-pointer"
+                            >
+                                انتخاب تصویر
+                            </label>
                         </div>
                         {/*preview image*/}
                         <div className="mb-4">
