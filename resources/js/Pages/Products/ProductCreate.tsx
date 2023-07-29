@@ -30,6 +30,7 @@ export default function ProductCreate(
     const handleChange = (event: ChangeEvent<HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement>) => {
         const key = event.target.name;
         const value = event.target.value;
+        // @ts-ignore
         form.setData(key, value);
 
         setErrors({
