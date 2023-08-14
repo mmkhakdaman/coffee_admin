@@ -90,7 +90,7 @@ export default function OrderItem(
                 </span>
                 {
                     {
-                        [OrderStatusEnum.PENDING]: <>
+                        [OrderStatusEnum.CONFIRMED]: <>
                             <div className="flex space-x-2 space-x-reverse">
                                 <button
                                     onClick={handleComplete}
@@ -99,7 +99,7 @@ export default function OrderItem(
                                 </button>
                             </div>
                         </>,
-                        [OrderStatusEnum.CONFIRMED]: <>
+                        [OrderStatusEnum.PENDING]: <>
                             <div className="flex space-x-2 space-x-reverse">
                                 <button
                                     onClick={handleConfirm}
