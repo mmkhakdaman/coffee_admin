@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\OrderStatusEnum;
 use App\Repositories\OrderRepository;
 
 class OrderService
@@ -21,5 +22,17 @@ class OrderService
         return $this->repo()->getHistoryOrders();
     }
 
+    public function confirmOrder($order)
+    {
+        return $this->repo()->setOrderStatus($order, OrderStatusEnum::CONFIRMED);
+    }
+    public function cancelOrder($order)
+    {
+        return $this->repo()->setOrderStatus($order, OrderStatusEnum::CANCELLED);
+    }
 
+    public function completeOrder($order)
+    {
+        return $this->repo()->setOrderStatus($order, OrderStatusEnum::COMPLETED);
+    }
 }

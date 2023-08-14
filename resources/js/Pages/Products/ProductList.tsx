@@ -1,6 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import {Head, Link} from '@inertiajs/react';
-import {Category, PageProps, Product} from '@/types';
+import { Head, Link } from '@inertiajs/react';
+import { Category, PageProps, Product } from '@/types';
 import CategoryList from "@/Components/Category/CategoryList";
 import ProductItem from "@/Components/Products/ProductItem";
 
@@ -16,7 +16,7 @@ export default function ProductList(
             user={auth.user}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">محصولات</h2>}
         >
-            <Head title="محصولات"/>
+            <Head title="محصولات" />
 
             <div className="py-8">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -48,27 +48,28 @@ export default function ProductList(
                             {
                                 categories.map(
                                     (category) =>
-                                        (
-                                            <div className="flex-col space-y-4"
-                                                 id={`category-${category.id}`}
-                                            >
-                                                <h2 className="text-xl font-semibold text-gray-800 leading-tight">
-                                                    {category.title}
-                                                </h2>
-                                                <div className="flex flex-col space-y-4">
-                                                    {
-                                                        products
-                                                            .filter((product) => product.category_id === category.id)
-                                                            .map(
-                                                                (product: Product) => <ProductItem
-                                                                    key={product.id}
-                                                                    product={product}
-                                                                />
-                                                            )
-                                                    }
-                                                </div>
+                                    (
+                                        <div className="flex-col space-y-4"
+                                            key={category.id}
+                                            id={`category-${category.id}`}
+                                        >
+                                            <h2 className="text-xl font-semibold text-gray-800 leading-tight">
+                                                {category.title}
+                                            </h2>
+                                            <div className="flex flex-col space-y-4">
+                                                {
+                                                    products
+                                                        .filter((product) => product.category_id === category.id)
+                                                        .map(
+                                                            (product: Product) => <ProductItem
+                                                                key={product.id}
+                                                                product={product}
+                                                            />
+                                                        )
+                                                }
                                             </div>
-                                        )
+                                        </div>
+                                    )
                                 )
                             }
                         </div>

@@ -1,4 +1,7 @@
-import {Order} from "@/types";
+import { Order } from "@/types";
+import { OrderStatusEnum } from "@/types/enums";
+import { router } from "@inertiajs/react";
+import axios from "axios";
 
 export default function OrderItem(
     {
@@ -8,7 +11,35 @@ export default function OrderItem(
             order: Order
         }
 ) {
-    console.log(order);
+
+    const handleConfirm = () => {
+        axios.put(route('order.confirm', order.id))
+            .then(
+                () => {
+                    router.reload();
+                }
+            );
+    }
+
+    const handleCancel = () => {
+        axios.put(route('order.cancel', order.id))
+            .then(
+                () => {
+                    router.reload();
+                }
+            );
+    }
+
+
+    const handleComplete = () => {
+        axios.put(route('order.complete', order.id))
+            .then(
+                () => {
+                    router.reload();
+                }
+            );
+    }
+
     return (
         <div className="bg-white p-4 rounded-xl shadow space-y-4">
             <div className="flex flex-row justify-between space-x-reverse space-x-2">
@@ -36,7 +67,7 @@ export default function OrderItem(
                                         <span className="text-gray-400">
                                             {
                                                 item.quantity
-                                            }x
+                                            }&times;
                                         </span>
                                     </span>
                                 )
@@ -57,6 +88,44 @@ export default function OrderItem(
                         تومان
                     </span>
                 </span>
+                {
+                    {
+                        [OrderStatusEnum.PENDING]: <>
+                            <div className="flex space-x-2 space-x-reverse">
+                                <button
+                                    onClick={handleComplete}
+                                    className="bg-green-500 text-white hover:bg-green-700 font-bold py-1 px-2 rounded-lg">
+                                    تحویل
+                                </button>
+                            </div>
+                        </>,
+                        [OrderStatusEnum.CONFIRMED]: <>
+                            <div className="flex space-x-2 space-x-reverse">
+                                <button
+                                    onClick={handleConfirm}
+                                    className="bg-green-500 text-white hover:bg-green-700 font-bold py-1 px-2 rounded-lg">
+                                    تایید
+                                </button>
+
+                                <button
+                                    onClick={handleCancel}
+                                    className="bg-red-500 text-white hover:bg-red-700 font-bold py-1 px-2 rounded-lg">
+                                    لغو
+                                </button>
+                            </div>
+                        </>,
+                        [OrderStatusEnum.CANCELLED]: <>
+                            <span className="text-red-500">
+                                لغو شده
+                            </span>
+                        </>,
+                        [OrderStatusEnum.COMPLETED]: <>
+                            <span className="text-green-500">
+                                تحویل داده شده
+                            </span>
+                        </>,
+                    }[order.status]
+                }
             </div>
         </div>
     );

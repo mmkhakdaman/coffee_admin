@@ -16,14 +16,6 @@ use Inertia\Inertia;
 |
 */
 
-//Route::get('/', function () {
-//    return Inertia::render('Welcome', [
-//        'canLogin' => Route::has('login'),
-//        'canRegister' => Route::has('register'),
-//        'laravelVersion' => Application::VERSION,
-//        'phpVersion' => PHP_VERSION,
-//    ]);
-//});
 
 Route::redirect('/', '/order/list');
 
@@ -36,8 +28,21 @@ Route::get(
     [\App\Http\Controllers\OrderController::class, 'history']
 )->middleware(['auth', 'verified'])->name('order.history');
 
+Route::put('/order/{order}/confirm', [\App\Http\Controllers\OrderController::class, 'confirm'])
+    ->middleware(['auth', 'verified'])->name('order.confirm');
+
+
+Route::put('/order/{order}/cancel', [\App\Http\Controllers\OrderController::class, 'cancel'])
+    ->middleware(['auth', 'verified'])->name('order.cancel');
+Route::put('/order/{order}/complete', [\App\Http\Controllers\OrderController::class, 'complete'])
+    ->middleware(['auth', 'verified'])->name('order.complete');
 
 Route::resource('products', \App\Http\Controllers\ProductController::class)->middleware(['auth', 'verified']);
+
+Route::put(
+    '/products/{product}/toggle-in-stock',
+    [\App\Http\Controllers\ProductController::class, 'toggleInStock']
+)->middleware(['auth', 'verified'])->name('products.toggle-in-stock');
 
 Route::apiResource('categories', \App\Http\Controllers\Api\CategoryController::class)->middleware(['auth', 'verified']);
 

@@ -1,5 +1,6 @@
 import { Product } from "@/types";
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
+import axios from "axios";
 
 export default function ProductItem(
     {
@@ -10,6 +11,16 @@ export default function ProductItem(
             product: Product
         }
 ) {
+
+    const handelInStockChange = () => {
+        axios.put(route('products.toggle-in-stock', product.id)).then(
+            (response) => {
+                router.reload();
+            }
+        );
+    }
+
+
     return (
 
         <div className="flex flex-row justify-between bg-white p-4 rounded-xl space-x-2 shadow">
@@ -33,17 +44,27 @@ export default function ProductItem(
                             موجود
                         </span>
                         {/*switch button*/}
-                        <label className="flex items-center cursor-pointer">
+                        <button className="flex items-center cursor-pointer"
+                            onClick={handelInStockChange}
+                        >
                             <div className="relative">
                                 <input type="checkbox" className="hidden" />
                                 <div
-                                    className="toggle__line w-10 h-6 bg-green-400 rounded-full shadow-inner"></div>
-                                <div
-                                    className="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>
-                                {/*<div*/}
-                                {/*    className="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 right-0"></div>*/}
+                                    className={
+                                        `toggle__line w-10 h-6 rounded-full shadow-inner`+
+                                        (product.in_stock ? ' bg-green-400' : ' bg-gray-400')
+                                    }></div>
+                                {
+                                    product.in_stock
+                                        ?
+                                        <div
+                                            className="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>
+                                        :
+                                        <div
+                                            className="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 right-0"></div>
+                                }
                             </div>
-                        </label>
+                        </button>
                     </div>
                 </div>
 

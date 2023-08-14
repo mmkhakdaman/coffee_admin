@@ -30,4 +30,21 @@ class OrderController extends Controller
             'orders' => $orders
         ]);
     }
+
+
+    public function confirm($order)
+    {
+        return $this->service()->confirmOrder($order);
+    }
+
+
+    public function cancel($order)
+    {
+        return $this->service()->cancelOrder($order);
+    }
+
+    public function complete($order)
+    {
+        return $this->service()->completeOrder($order);
+    }
 }

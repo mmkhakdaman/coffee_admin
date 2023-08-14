@@ -45,4 +45,9 @@ class ProductService
     {
         return $this->repo()->delete($product);
     }
+
+    public function toggleInStock(Product $product)
+    {
+        return $this->repo()->toggleInStock($product);
+    }
 }

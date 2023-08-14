@@ -4,6 +4,7 @@ namespace App\Enums;
 
 enum OrderStatusEnum: string
 {
+    case NOT_PAID = 'not_paid';
     case PENDING = 'pending';
     case CONFIRMED = 'confirmed';
     case CANCELLED = 'cancelled';
@@ -12,6 +13,7 @@ enum OrderStatusEnum: string
     public static function getValues()
     {
         return [
+            self::NOT_PAID->value,
             self::PENDING->value,
             self::CONFIRMED->value,
             self::CANCELLED->value,

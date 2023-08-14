@@ -1,3 +1,5 @@
+import { OrderStatusEnum } from "./enums";
+
 export interface User {
     id: number;
     name: string;
@@ -21,6 +23,7 @@ export interface Product {
     image_url: string;
     category: Category;
     stock: number;
+    in_stock: boolean;
 }
 
 export interface OrderItem {
@@ -34,7 +37,7 @@ export interface OrderItem {
 export interface Order {
     id: number;
     user_id: number;
-    status: string;
+    status: OrderStatusEnum;
     description: string;
     price: number;
     items: OrderItem[];

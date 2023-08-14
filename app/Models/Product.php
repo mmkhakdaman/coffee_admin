@@ -18,7 +18,8 @@ class Product extends Model
         'description',
         'image',
         'is_active',
-        'order'
+        'order',
+        'in_stock'
     ];
 
     protected $appends = [

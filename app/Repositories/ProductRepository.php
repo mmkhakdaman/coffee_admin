@@ -36,4 +36,11 @@ class ProductRepository
             ->orderBy('order')
             ->get();
     }
+
+    public function toggleInStock(Product $product)
+    {
+        return $product->update([
+            'in_stock' => !$product->in_stock
+        ]);
+    }
 }
