@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\User;
+use App\Notifications\ProductOrderedNotification;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,6 +22,29 @@ use Inertia\Inertia;
 
 
 Route::redirect('/', '/order/list');
+
+Route::post('push', function (Request $request) {
+    $request->validate([
+        'endpoint'    => 'required',
+        'keys.auth'   => 'required',
+        'keys.p256dh' => 'required'
+    ]);
+    $endpoint = $request->endpoint;
+    $token = $request->keys['auth'];
+    $key = $request->keys['p256dh'];
+    $user = User::find(1);
+    $user->updatePushSubscription($endpoint, $key, $token);
+
+    return response()->json(['success' => true], 200);
+});
+
+Route::get('notif', [\App\Http\Controllers\NotificationController::class, 'index']);
+
+
+Route::get('dev-login',function (){
+    auth()->loginUsingId(1);
+    return redirect()->route('order.list');
+});
 
 Route::get(
     '/order/list',
