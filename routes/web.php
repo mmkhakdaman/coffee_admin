@@ -32,11 +32,11 @@ Route::post('push', function (Request $request) {
     $endpoint = $request->endpoint;
     $token = $request->keys['auth'];
     $key = $request->keys['p256dh'];
-    $user = User::find(1);
+    $user = auth()->user();
     $user->updatePushSubscription($endpoint, $key, $token);
 
     return response()->json(['success' => true], 200);
-});
+})->middleware('auth');
 
 Route::get('notif', [\App\Http\Controllers\NotificationController::class, 'index']);
 
