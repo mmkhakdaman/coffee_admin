@@ -11,7 +11,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'costumer_id',
+        'customer_id',
         'description',
         'price',
         'status',
@@ -19,6 +19,8 @@ class Order extends Model
         'cancelled_at',
         'confirmed_at',
         'pending_at',
+        'address',
+        'is_delivery',
     ];
 
     protected $casts = [
@@ -32,5 +34,10 @@ class Order extends Model
     public function items()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 }

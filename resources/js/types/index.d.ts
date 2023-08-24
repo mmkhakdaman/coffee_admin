@@ -34,12 +34,21 @@ export interface OrderItem {
     product: Product;
 }
 
+export interface Customer {
+    id: number;
+    phone: string;
+}
+
 export interface Order {
+    is_delivery: boolean;
     id: number;
     user_id: number;
     status: OrderStatusEnum;
     description: string;
     price: number;
+    address: string;
+    phone: string;
+    customer: Customer;
     items: OrderItem[];
 }
 

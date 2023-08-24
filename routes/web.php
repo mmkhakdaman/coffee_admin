@@ -41,7 +41,7 @@ Route::post('push', function (Request $request) {
 Route::get('notif', [\App\Http\Controllers\NotificationController::class, 'index']);
 
 
-Route::get('dev-login',function (){
+Route::get('dev-login', function () {
     auth()->loginUsingId(1);
     return redirect()->route('order.list');
 });

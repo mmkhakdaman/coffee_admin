@@ -73,6 +73,37 @@ export default function OrderItem(
                                 )
                             }
                         </div>
+                        {/* address */}
+                        <div>
+                            <div className="mt-8 flex flex-col space-y-2">
+                                <span
+                                    className="text-sm font-semibold text-gray-800 leading-tight flex items-center space-x-2 space-x-reverse">
+                                    <p>
+                                        تلفن:
+                                    </p>
+                                    <span className="text-gray-400">
+                                        {
+                                            order.customer.phone
+                                        }
+                                    </span>
+                                </span>
+                                {
+                                    order.is_delivery && <>
+                                        <span
+                                            className="text-sm font-semibold text-gray-800 leading-tight flex items-center space-x-2 space-x-reverse mt-8">
+                                            <p>
+                                                آدرس:
+                                            </p>
+                                            <span className="text-gray-400">
+                                                {
+                                                    order.address
+                                                }
+                                            </span>
+                                        </span>
+                                    </>
+                                }
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

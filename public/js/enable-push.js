@@ -1,3 +1,5 @@
+initSW();
+
 function initSW() {
     if (!"serviceWorker" in navigator) {
         //service worker isn't supported
@@ -102,5 +104,3 @@ function storePushSubscription(pushSubscription) {
         });
 }
 
-
-initSW();

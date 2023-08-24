@@ -11,7 +11,6 @@ class NotificationController extends Controller
 {
     public function index()
     {
-        Notification::send(User::all(),new ProductOrderedNotification);
         return 'a';
     }
 }

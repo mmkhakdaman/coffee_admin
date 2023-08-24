@@ -17,16 +17,16 @@ class OrderRepository
     {
         return $this->query()
             ->whereIn('status', [OrderStatusEnum::PENDING, OrderStatusEnum::CONFIRMED])
-            ->with('items.product')
+            ->with('items.product', 'customer')
             ->orderBy('pending_at', 'desc')
             ->get();
     }
 
-    public function getOrdersByCostumerId(int|string|null $id)
+    public function getOrdersByCustomerId(int|string|null $id)
     {
         return $this->query()
-            ->where('costumer_id', $id)
-            ->with('items.product')
+            ->where('customer_id', $id)
+            ->with('items.product', 'customer')
             ->orderBy('pending_at', 'desc')
             ->get();
     }
@@ -35,7 +35,7 @@ class OrderRepository
     {
         return $this->query()
             ->whereNotIn('status', [OrderStatusEnum::PENDING, OrderStatusEnum::NOT_PAID])
-            ->with('items.product')
+            ->with('items.product', 'customer')
             ->orderBy('pending_at', 'desc')
             ->get();
     }
