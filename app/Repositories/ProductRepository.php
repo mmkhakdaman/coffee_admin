@@ -43,4 +43,11 @@ class ProductRepository
             'in_stock' => !$product->in_stock
         ]);
     }
+
+    public function toggleIsActive(Product $product)
+    {
+        return $product->update([
+            'is_active' => !$product->is_active
+        ]);
+    }
 }

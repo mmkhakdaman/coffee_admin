@@ -14,6 +14,7 @@ export interface Category {
 }
 
 export interface Product {
+    is_active: boolean;
     id: number;
     title: string;
     description: string;

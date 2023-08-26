@@ -88,4 +88,9 @@ class ProductController extends Controller
     {
         return $this->service()->toggleInStock($product);
     }
+
+    public function toggleIsActive(Product $product)
+    {
+        return $this->service()->toggleIsActive($product);
+    }
 }

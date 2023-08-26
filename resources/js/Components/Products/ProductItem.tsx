@@ -20,6 +20,14 @@ export default function ProductItem(
         );
     }
 
+    const handelIsActiveChange = () => {
+        axios.put(route('products.toggle-is-active', product.id)).then(
+            (response) => {
+                router.reload();
+            }
+        );
+    }
+
 
     return (
 
@@ -38,12 +46,11 @@ export default function ProductItem(
                     </p>
                 </div>
 
-                <div className="flex flex-col mt-2 space-y-2">
+                <div className="flex flex-col mt-2 space-y-4">
                     <div className="flex items-center space-x-2 space-x-reverse">
-                        <span className="text-sm font-semibold text-gray-800 leading-tight">
+                        <span className="text-sm font-semibold text-gray-800 leading-tight w-16">
                             موجود
                         </span>
-                        {/*switch button*/}
                         <button className="flex items-center cursor-pointer"
                             onClick={handelInStockChange}
                         >
@@ -51,11 +58,37 @@ export default function ProductItem(
                                 <input type="checkbox" className="hidden" />
                                 <div
                                     className={
-                                        `toggle__line w-10 h-6 rounded-full shadow-inner`+
+                                        `toggle__line w-10 h-6 rounded-full shadow-inner` +
                                         (product.in_stock ? ' bg-green-400' : ' bg-gray-400')
                                     }></div>
                                 {
                                     product.in_stock
+                                        ?
+                                        <div
+                                            className="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>
+                                        :
+                                        <div
+                                            className="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 right-0"></div>
+                                }
+                            </div>
+                        </button>
+                    </div>
+                    <div className="flex items-center space-x-2 space-x-reverse">
+                        <span className="text-sm font-semibold text-gray-800 leading-tight w-16">
+                            فعال
+                        </span>
+                        <button className="flex items-center cursor-pointer"
+                            onClick={handelIsActiveChange}
+                        >
+                            <div className="relative">
+                                <input type="checkbox" className="hidden" />
+                                <div
+                                    className={
+                                        `toggle__line w-10 h-6 rounded-full shadow-inner` +
+                                        (product.is_active ? ' bg-green-400' : ' bg-gray-400')
+                                    }></div>
+                                {
+                                    product.is_active
                                         ?
                                         <div
                                             className="toggle__dot absolute w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0"></div>

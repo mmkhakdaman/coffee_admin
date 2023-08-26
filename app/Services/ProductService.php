@@ -50,4 +50,9 @@ class ProductService
     {
         return $this->repo()->toggleInStock($product);
     }
+
+    public function toggleIsActive(Product $product)
+    {
+        return $this->repo()->toggleIsActive($product);
+    }
 }

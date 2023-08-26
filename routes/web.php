@@ -71,6 +71,11 @@ Route::put(
     [\App\Http\Controllers\ProductController::class, 'toggleInStock']
 )->middleware(['auth', 'verified'])->name('products.toggle-in-stock');
 
+Route::put(
+    '/products/{product}/toggle-is-active',
+    [\App\Http\Controllers\ProductController::class, 'toggleIsActive']
+)->middleware(['auth', 'verified'])->name('products.toggle-is-active');
+
 Route::apiResource('categories', \App\Http\Controllers\Api\CategoryController::class)->middleware(['auth', 'verified']);
 
 
