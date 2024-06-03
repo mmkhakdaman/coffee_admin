@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 
 LABEL maintainer="Mahdi Kahkdaman"
 
-ARG WWWGROUP=www-data
+ARG WWWGROUP=coffeeya
 ARG NODE_VERSION=18
 ARG POSTGRES_VERSION=15
 
